@@ -19,11 +19,9 @@ func Damm(cc string) (ok bool) {
 scan:
 	x = m[10*int(x)+int(cc[i])-48]
 	i++
-	if i == l {
-		goto eos
+	if i != l {
+		goto scan
 	}
-	goto scan
 
-eos:
 	return x == 0
 }
