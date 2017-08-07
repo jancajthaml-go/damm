@@ -1,27 +1,37 @@
-package main
+// Package damm supports the computation of a decimal checksum. It uses a
+// method proposed by H. Michael Damm in 2004. The checksum doesn't change for
+// leading zeroes.
+//
+// Information about the algorithm is available on Wikipedia
+//
+// http://en.wikipedia.org/wiki/Damm_algorithm
+//
+package damm
 
-var m = [100]uint{0, 3, 1, 7, 5, 9, 8, 6, 4, 2, 7, 0, 9, 2, 1, 5, 4, 8, 6, 3, 4, 2, 0, 6, 8, 7, 1, 3, 5, 9, 1, 7, 5, 0, 9, 8, 3, 4, 2, 6, 6, 1, 2, 3, 0, 4, 5, 9, 7, 8, 3, 6, 7, 4, 2, 0, 9, 5, 8, 1, 5, 8, 6, 9, 7, 2, 0, 1, 3, 4, 8, 9, 4, 5, 3, 6, 2, 0, 1, 7, 9, 4, 3, 8, 6, 1, 7, 2, 0, 5, 2, 5, 8, 1, 4, 3, 6, 7, 9, 0}
+import "errors"
 
-/**
- * Damm Checksum algorithm
- *
- * @see https://en.wikipedia.org/wiki/Damm_algorithm
- *
- * @author jan.cajthaml
- */
-func Damm(cc string) (ok bool) {
+var m = [160]uint{0, 3, 1, 7, 5, 9, 8, 6, 4, 2, 0, 0, 0, 0, 0, 0, 7, 0, 9, 2, 1, 5, 4, 8, 6, 3, 0, 0, 0, 0, 0, 0, 4, 2, 0, 6, 8, 7, 1, 3, 5, 9, 0, 0, 0, 0, 0, 0, 1, 7, 5, 0, 9, 8, 3, 4, 2, 6, 0, 0, 0, 0, 0, 0, 6, 1, 2, 3, 0, 4, 5, 9, 7, 8, 0, 0, 0, 0, 0, 0, 3, 6, 7, 4, 2, 0, 9, 5, 8, 1, 0, 0, 0, 0, 0, 0, 5, 8, 6, 9, 7, 2, 0, 1, 3, 4, 0, 0, 0, 0, 0, 0, 8, 9, 4, 5, 3, 6, 2, 0, 1, 7, 0, 0, 0, 0, 0, 0, 9, 4, 3, 8, 6, 1, 7, 2, 0, 5, 0, 0, 0, 0, 0, 0, 2, 5, 8, 1, 4, 3, 6, 7, 9, 0, 0, 0, 0, 0, 0, 0}
+
+func DammDigit(cc string) (uint, error) {
 	var (
+		d uint
 		i int  = 0
-		l int  = len(cc)
 		x uint = 0
 	)
-
 scan:
-	x = m[10*int(x)+int(cc[i])-48]
+	d = uint(cc[i]) - 48
+	if d > 9 {
+		return 9, errors.New("string must contain only digits")
+	}
+	x = m[x<<4+d]
 	i++
-	if i != l {
+	if i != len(cc) {
 		goto scan
 	}
+	return x, nil
+}
 
-	return x == 0
+func DammValidate(cc string) (ok bool) {
+	digit, err := DammDigit(cc)
+	return err == nil && digit == 0
 }
