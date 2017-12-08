@@ -1,17 +1,15 @@
-Performant and straight-forward implementation of damm checksum algorithm
+Performant and straight-forward implementation of [damm checksum](https://en.wikipedia.org/wiki/Damm_algorithm) algorithm
 
 [![Go Report Card](https://goreportcard.com/badge/jancajthaml-go/damm)](https://goreportcard.com/report/jancajthaml-go/damm)
-
-@see https://en.wikipedia.org/wiki/Damm_algorithm
 
 ### Usage ###
 
 ```
-  import "github.com/jancajthaml-go/damm"
+import "github.com/jancajthaml-go/damm"
 
-  damm.Validate("00123014764700968325")
+damm.Validate("00123014764700968325")
 
-  digit, error := damm.Digit("x")
+digit, error := damm.Digit("x")
 ```
 
 ### Performance ###
