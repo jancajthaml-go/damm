@@ -18,15 +18,16 @@ func Digit(cc string) (uint, error) {
 		d uint
 		i int
 		x uint
+		l int = len(cc)
 	)
 scan:
 	d = uint(cc[i]) - 48
-	if d > 9 {
+	if d < 0 || d > 9 {
 		return 1, errors.New("string must contain only digits")
 	}
 	x = m[x<<4+d]
 	i++
-	if i != len(cc) {
+	if i != l {
 		goto scan
 	}
 	return x, nil
@@ -36,4 +37,15 @@ scan:
 func Validate(cc string) (ok bool) {
 	digit, err := Digit(cc)
 	return err == nil && digit == 0
+}
+
+// Generate signs string with damm digit
+func Generate(cc string) (string, error) {
+	digit, err := Digit(cc)
+
+	if err != nil {
+		return cc, err
+	}
+
+	return cc + string(digit+48), nil
 }

@@ -31,6 +31,19 @@ func BenchmarkDammLargeParallel(b *testing.B) {
 }
 
 func TestDamm(t *testing.T) {
+	expectSignature := func(a string, b string) {
+		c, err := Generate(a)
+		if err != nil {
+			t.Errorf("%v", err)
+		} else if b != c {
+			t.Errorf("for input " + a + " expected signature " + b + " but got " + c + " instead")
+		}
+
+		if !Validate(c) {
+			t.Errorf("Unable to validate signature that was generated")
+		}
+	}
+
 	if !Validate("00123014764700968325") {
 		t.Errorf("Checksum failed for valid input")
 	}
@@ -42,4 +55,6 @@ func TestDamm(t *testing.T) {
 	if Validate("xy-1") {
 		t.Errorf("Checksum passed for invalid alphabet")
 	}
+
+	expectSignature("0012301476470096832", "00123014764700968325")
 }
