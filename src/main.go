@@ -1,4 +1,4 @@
-package damm
+package main
 
 import "os"
 
@@ -14,7 +14,7 @@ func main() {
 		return
 	}
 
-	if !DammValidate(os.Args[1]) {
+	if !Validate(os.Args[1]) {
 		os.Exit(1)
 		return
 	}
