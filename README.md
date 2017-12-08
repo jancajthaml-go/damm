@@ -1,4 +1,4 @@
-Performant and straight-forward implementation of [damm checksum](https://en.wikipedia.org/wiki/Damm_algorithm) algorithm
+## Performant and straight-forward implementation of damm checksum algorithm
 
 [![Go Report Card](https://goreportcard.com/badge/jancajthaml-go/damm)](https://goreportcard.com/report/jancajthaml-go/damm)
 
@@ -22,3 +22,7 @@ BenchmarkDammLargeParallel-4    100000000         14.7 ns/op
 ```
 
 test on your own by running `make benchmark`
+
+### Resources ###
+
+* [Wikipedia - Damm algorithm](https://en.wikipedia.org/wiki/Damm_algorithm)
