@@ -1,5 +1,5 @@
-PKG_OS = $$(echo ${GOOS:=darwin})
-PKG_ARCH = $$(echo ${GOARCH:=amd64})
+PKG_OS = $$(if [ -z ${GOOS} ] ; then echo darwin ; else echo ${GOOS} ; fi)
+PKG_ARCH = $$(if [ -z ${GOARCH} ] ; then echo amd64 ; else echo ${GOARCH} ; fi)
 
 .PHONY: all
 all: clean build benchmark
