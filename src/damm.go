@@ -22,7 +22,7 @@ func Digit(cc string) (uint, error) {
 	)
 scan:
 	d = uint(cc[i]) - 48
-	if d < 0 || d > 9 {
+	if d > 9 {
 		return 1, errors.New("string must contain only digits")
 	}
 	x = m[x<<4+d]
