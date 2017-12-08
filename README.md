@@ -7,9 +7,11 @@
 ```
 import "github.com/jancajthaml-go/damm"
 
-damm.Validate("00123014764700968325")
+ok := damm.Validate("00123014764700968325")
 
 digit, error := damm.Digit("x")
+
+signed := damm.Generate("1")
 ```
 
 ### Performance ###
