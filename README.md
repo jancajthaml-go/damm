@@ -1,4 +1,4 @@
-## Performant and straight-forward implementation of damm checksum algorithm
+## damm checksum algorithm
 
 [![Go Report Card](https://goreportcard.com/badge/jancajthaml-go/damm)](https://goreportcard.com/report/jancajthaml-go/damm)
 
@@ -11,19 +11,19 @@ ok := damm.Validate("00123014764700968325")
 
 digit, error := damm.Digit("x")
 
-signed := damm.Generate("1")
+checksum := damm.Generate("1")
 ```
 
 ### Performance ###
 
 ```
-BenchmarkDammSmall-4            500000000         3.98 ns/op
-BenchmarkDammLarge-4            50000000          39.4 ns/op
-BenchmarkDammSmallParallel-4    1000000000        1.99 ns/op
-BenchmarkDammLargeParallel-4    100000000         14.7 ns/op
+BenchmarkDammSmall-4           	500000000	        3.80 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDammLarge-4           	50000000	        38.5 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDammSmallParallel-4   	1000000000	      2.09 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDammLargeParallel-4   	100000000	        15.2 ns/op	       0 B/op	       0 allocs/op
 ```
 
-test on your own by running `make benchmark`
+verify your performance by running `make benchmark`
 
 ### Resources ###
 
