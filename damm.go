@@ -6,7 +6,7 @@
 //
 // http://en.wikipedia.org/wiki/Damm_algorithm
 //
-package main
+package damm
 
 import "errors"
 
