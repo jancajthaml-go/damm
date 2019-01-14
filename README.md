@@ -17,10 +17,10 @@ checksum := damm.Generate("1")
 ### Performance ###
 
 ```
-BenchmarkDammSmall-4           	500000000	        3.80 ns/op	       0 B/op	       0 allocs/op
-BenchmarkDammLarge-4           	50000000	        38.5 ns/op	       0 B/op	       0 allocs/op
-BenchmarkDammSmallParallel-4   	1000000000	      2.09 ns/op	       0 B/op	       0 allocs/op
-BenchmarkDammLargeParallel-4   	100000000	        15.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDammSmall-4           500000000    3.80 ns/op   0 B/op   0 allocs/op
+BenchmarkDammLarge-4           50000000     38.5 ns/op   0 B/op   0 allocs/op
+BenchmarkDammSmallParallel-4   1000000000   2.09 ns/op   0 B/op   0 allocs/op
+BenchmarkDammLargeParallel-4   100000000    15.2 ns/op   0 B/op   0 allocs/op
 ```
 
 verify your performance by running `make benchmark`
